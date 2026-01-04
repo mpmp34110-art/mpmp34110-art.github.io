@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>ดูตอน</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  background:#0b0b0b;
+  color:#fff;
+  font-family:sans-serif;
+}
+
+/* กล่องหลัก */
+.container{
+  max-width:720px;
+  margin:auto;
+  padding:12px;
+}
+
+/* หัวเรื่อง */
+.title{
+  font-size:20px;
+  font-weight:bold;
+  margin-bottom:6px;
+}
+
+.subtitle{
+  color:#aaa;
+  font-size:14px;
+  margin-bottom:10px;
+}
+
+/* กล่องวิดีโอ */
+.player{
+  background:#000;
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 10px 25px rgba(0,0,0,.6);
+}
+
+video{
+  width:100%;
+  display:block;
+}
+
+/* แถบปุ่ม */
+.controls{
+  display:flex;
+  gap:10px;
+  margin-top:14px;
+}
+
+.btn{
+  flex:1;
+  background:#1e1e1e;
+  border:none;
+  border-radius:12px;
+  padding:12px;
+  color:#fff;
+  font-size:14px;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.btn:hover{
+  background:#ff4d4d;
+}
+
+/* กล่องข้อมูล */
+.info{
+  background:#141414;
+  border-radius:14px;
+  padding:14px;
+  margin-top:16px;
+  font-size:14px;
+  line-height:1.6;
+  color:#ccc;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+  <div class="title" id="title">Kusuriya no Hitorigoto</div>
+  <div class="subtitle" id="epTitle">ตอนที่ 1 ซับไทย</div>
+  
+<div class="info">
+    รวมทุกตอน Kusuriya no Hitorigoto สืบคดีปริศนา หมอยาตำรับโคมแดง ตอนที่ 1-24 ซับไทย [จบ]
+  </div>
+  
+  <div class="player">
+    <video controls>
+      <source id="video" type="video/mp4">
+    </video>
+  </div>
+
+  <div class="controls">
+    <button class="btn" onclick="prevEp()">⬅ ตอนก่อนหน้า</button>
+    <button class="btn" onclick="nextEp()">ตอนถัดไป ➡</button>
+  </div>
+
+</div>
+
+<script>
+const ep = parseInt(new URLSearchParams(location.search).get("ep") || "1");
+
+const videos = {
+  1: "https://a12.rukoluo.com/f/1/Kusuriya-no-Hitorigoto/Kusuriya-no-Hitorigoto-01-360.mp4?m=9hgvhSmdtRKjDTMx6FW9Gg&e=1767511727"
+};
+
+document.getElementById("epTitle").innerText = "ตอนที่ " + ep + " ซับไทย";
+document.getElementById("video").src = videos[ep];
+
+function nextEp(){
+  location.href = "watch.html?ep=" + (ep + 1);
+}
+
+function prevEp(){
+  if(ep > 1){
+    location.href = "watch.html?ep=" + (ep - 1);
+  }
+}
+</script>
+
+</body>
+</html>
